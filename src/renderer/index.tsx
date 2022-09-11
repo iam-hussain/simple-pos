@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createRoot } from 'react-dom/client';
-import App from './app/Application';
+import App from './app';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
