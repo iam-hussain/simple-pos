@@ -8,7 +8,7 @@
   --app-border-color: #3b3f44;
 
   // Text
-  --app-text-color: "#fff";
+  --text-color: "#f1f0f0";
 
   // Scrollbar
   --scroll-width: 10px;
@@ -60,7 +60,7 @@ body:not(.dark-mode) {
   --app-bgcolor: #f1f0f0;
 
   // Text
-  --app-text-color: "#efefef";
+  --text-color: "#202020";
 
   // Selection
   --selection-bgcolor: var(--app-accent-color);
