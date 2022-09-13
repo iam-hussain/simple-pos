@@ -7,8 +7,8 @@ export const Form = styled.form``;
 
 export const FormGroup = styled.div`
   margin: 0;
-  margin-top: ${(props) => props.theme.space[6]};
-  margin-bottom: ${(props) => props.theme.space[3]};
+  margin-top: ${(props) => props.theme.space[4]};
+  margin-bottom: ${(props) => props.theme.space[0]};
   padding: 0;
 `;
 
@@ -32,7 +32,8 @@ export const Label = styled.label.attrs(AttributeHandle)`
   font-size: ${(props) => props.theme.font_sizes.label};
   line-height: ${(props) => props.theme.line_heights[0]};
   margin: 0;
-  margin-bottom: ${(props) => props.theme.space[2]};
+  margin-bottom: ${(props) => props.theme.space[1]};
+  color: ${(props) => props.theme.color.secondary};
 
   ${({ color: input, theme: { color } }) =>
     input === 'error' &&
@@ -51,7 +52,7 @@ export const InputWrapper = styled.div<{ flex?: number }>`
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-bottom: ${(props) => props.theme.space[5]};
+  margin-bottom: ${(props) => props.theme.space[4]};
   flex: ${(props) => (props?.flex !== undefined ? props.flex : 1)};
 `;
 

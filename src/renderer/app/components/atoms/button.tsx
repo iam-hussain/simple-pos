@@ -17,7 +17,7 @@ export const Button = styled.button.attrs(
 )`
   display: block;
   padding: 0 ${(props) => props.theme.space[3]};
-  margin: ${(props) => props.theme.space[3]} auto;
+  margin: ${(props) => props.theme.space[2]} auto;
   border-radius: ${(props) => props.theme.border_radius};
   font-size: ${(props) => props.theme.font_sizes.text};
   font-weight: ${(props) => props.theme.font_weight.normal};

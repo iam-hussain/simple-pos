@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import useTheme from '../../utils/useTheme';
+import { ThemeContext } from '../../theme-provider';
 
 interface SVGtypes {
   size: 'large' | 'medium' | 'small';
@@ -401,7 +403,7 @@ export function KitchenSvg() {
 }
 
 export function EditSvg() {
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -436,7 +438,7 @@ export function EditSvg() {
 }
 
 export function TaskDoneSvg() {
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
       <path
@@ -449,7 +451,7 @@ export function TaskDoneSvg() {
 }
 
 export function TrashSvg() {
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -495,7 +497,7 @@ export function TrashSvg() {
 }
 
 export function DashboardSvg() {
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
@@ -507,7 +509,7 @@ export function DashboardSvg() {
 }
 
 export function StoreSvg() {
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -529,7 +531,7 @@ export function StoreSvg() {
   );
 }
 export function SettingSvg() {
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
       <path
@@ -541,7 +543,7 @@ export function SettingSvg() {
 }
 
 export function CashierSolidSvg() {
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -580,7 +582,7 @@ export function CashierSolidSvg() {
 }
 
 export function BillSvg() {
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -598,7 +600,7 @@ export function BillSvg() {
 }
 
 export function InventorySvg() {
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

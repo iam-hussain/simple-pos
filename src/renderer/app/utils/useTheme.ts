@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { themeDark, themeLight } from '../styles/theme-config';
 
 function useTheme() {
-  const [isDarkMode, setDarkMode] = useState(true);
+  const [isDarkMode, setDarkMode] = useState(false);
   const [theme, setTheme] = useState(themeLight);
 
   useEffect(() => {
@@ -22,22 +22,21 @@ function useTheme() {
   useEffect(() => {
     if (isDarkMode) {
       localStorage.setItem('dark-isDarkMode', '1');
-      document.body.classList.add('dark-isDarkMode');
       setTheme(themeDark);
     } else {
       localStorage.setItem('dark-isDarkMode', '0');
-      document.body.classList.remove('dark-isDarkMode');
       setTheme(themeLight);
     }
   }, [isDarkMode]);
 
   function toggleTheme() {
-    setDarkMode(!isDarkMode);
+    setDarkMode((mode) => !mode);
   }
 
   return {
     isDarkMode,
     toggleTheme,
+    setDarkMode,
     theme,
   };
 }

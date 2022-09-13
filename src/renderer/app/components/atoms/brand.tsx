@@ -1,7 +1,9 @@
-import styled, { useTheme } from 'styled-components';
+import { useContext } from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../../theme-provider';
 
 export function BrandCleanSvg({ invert = false }: any) {
-  const theme: any = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg viewBox="0 0 200 45.72816729267347">
       <g
@@ -15,7 +17,7 @@ export function BrandCleanSvg({ invert = false }: any) {
 }
 
 export function BrandSvg({ invert = false }: any) {
-  const theme: any = useTheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <svg viewBox="0 0 240 76">
       <g

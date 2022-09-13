@@ -3,19 +3,17 @@ import { ThemeProvider } from 'styled-components';
 
 import Home from './pages/home';
 import InitialSetting from './pages/initial-setting';
+import CustomThemeProvider from './theme-provider';
 import useTheme from './utils/useTheme';
-import { GlobalStyle } from './styles/global-styles';
 
 export default function App() {
-  const { theme } = useTheme();
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
+    <CustomThemeProvider>
       <Router>
         <Routes>
           <Route path="/" element={<InitialSetting />} />
         </Routes>
       </Router>
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 }
