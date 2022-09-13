@@ -1,24 +1,4 @@
-// @import "../../../../node_modules/bootstrap/scss/functions.scss";
-// @import "../../../../node_modules/bootstrap/scss/variables.scss";
-// @import "../../../../node_modules/bootstrap/scss/bootstrap.scss";
 @import "./theme.scss";
-// @import "./primary.scss";
-// @import "./secondary.scss";
-
-// $white: #ffffff;
-
-// $theme-colors: (
-//   "light": #f5f5f5,
-//   "dark": #4a4950,
-//   "primary": #32639f,
-//   "secondary": #b1f1e3,
-//   "info": #34d3eb,
-//   "success": #17c06e,
-//   "warning": #ecd213,
-//   "danger": #fe1a12,
-// );
-
-// @import "../../../../node_modules/bootstrap/scss/bootstrap.scss";
 
 html,
 body {
@@ -74,6 +54,10 @@ a {
   }
 }
 
+form {
+  width: 100%;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -81,51 +65,17 @@ a {
   flex-direction: column;
   min-height: 100%;
 }
-form {
-  width: 100%;
+
+.h-100 {
+  height: 100% !important;
 }
 
-// button {
-//   background: var(--button-bgcolor);
-//   color: var(--button-color);
-//   font-weight: normal;
-//   text-shadow: 0px 1px var(--button-shadow-color);
-//   font-family: var(--app-font-family);
-//   border: var(--button-border);
-//   padding: 0.5rem 1rem;
-//   border-radius: 6px;
-//   font-size: 0.875rem;
-//   cursor: pointer;
-//   display: inline-flex;
-//   justify-content: space-around;
-//   align-items: center;
-//   outline: none;
-//   min-width: 140px;
-
-//   &:hover {
-//     background: var(--button-hover-bgcolor);
-//   }
-//   &:active {
-//     background: var(--button-active-bgcolor);
-//   }
-//   & > span {
-//     color: var(--button-badge-color);
-//     background-color: var(--button-badge-bgcolor);
-//     font-size: 12px;
-//     width: 24px;
-//     height: 24px;
-//     border-radius: 50%;
-//     display: inline-flex;
-//     align-items: center;
-//     justify-content: center;
-//     display: none;
-//   }
-
-//   img {
-//     width: 22px;
-//     opacity: 0.8;
-//   }
-// }
-
-// input {
-// }
+.island {
+  width: auto;
+  max-width: var(--space10);
+  padding: var(--space4);
+  margin: 0;
+  background-color: var(--color-paper);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-one);
+}
