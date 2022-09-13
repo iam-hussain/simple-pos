@@ -1,9 +1,56 @@
 :root {
+  --color-primary: #32639f;
+  --color-secondary: #8c8c8c;
+  --color-text: #343a40;
+  --color-text-light: #838689;
+  --color-background: #fff;
+  --color-paper: #f3f4f7;
+  --color-error: #f24b6a;
+  --color-warn: #f2bc1b;
+  --color-success: #8da632;
+  --color-info: #3498db;
+  --color-shadows: #bfbfbf;
+
+  --space0: 0;
+  --space1: 0.25rem;
+  --space2: 0.5rem;
+  --space3: 1rem;
+  --space4: 1.5rem;
+  --space5: 2rem;
+  --space6: 3rem;
+  --space7: 4rem;
+  --space8: 8rem;
+  --space9: 16rem;
+  --space10: 32rem;
+  --space11: 48rem;
+  --space11: 64rem;
+
+  --font-size-text: 1rem;
+  --font-size-text-small: 0.8rem;
+  --font-size-label: 1rem;
+  --font-size-heading1: 4.25rem;
+  --font-size-heading2: 3rem;
+  --font-size-heading3: 1.8rem;
+  --font-size-heading4: 1.5rem;
+  --font-size-heading5: 1.3rem;
+  --font-size-heading6: 1.1rem;
+
+  --letter-space-normal: normal;
+  --letter-space-caps: 0.1em;
+
+  --line-height: 1;
+  --line-height1: 1.125;
+  --line-height2: 1.25;
+  --line-height3: 1.5;
+
+  --shadow: 0 1px 2px 0 #bfbfbf;
+  --shadow-secondary: 0 1px 4px 0 #bfbfbf;
+
   // Application
   --app-accent-color: #32639f;
   --app-font-size: 16px;
-  --app-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Open Sans", "Helvetica Neue", sans-serif;
+  --app-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --app-bgcolor: #202020;
   --app-border-color: #3b3f44;
 
