@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 interface BUTTON {
-  mode?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'solid' | 'ghost';
+  color?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'solid' | 'ghost';
   size?: 'small' | 'regular' | 'large';
   fullWidth?: boolean;
   selected?: boolean;
@@ -10,14 +10,14 @@ interface BUTTON {
 export const Button = styled.button.attrs(
   (props: BUTTON): BUTTON => ({
     size: props.size || 'regular',
-    mode: props.mode || 'primary',
+    color: props.color || 'primary',
     fullWidth: props.fullWidth || true,
     selected: props.selected || false,
   })
 )`
   display: block;
   padding: 0 ${(props) => props.theme.space[3]};
-  margin: ${(props) => props.theme.space[2]} auto;
+  margin: ${(props) => props.theme.space[2]} 0;
   border-radius: ${(props) => props.theme.border_radius};
   font-size: ${(props) => props.theme.font_sizes.text};
   font-weight: ${(props) => props.theme.font_weight.normal};
@@ -32,7 +32,7 @@ export const Button = styled.button.attrs(
   /* text-transform: uppercase; */
   letter-spacing: ${(props) => props.theme.letter_spacings.caps};
 
-  ${({ mode, selected, theme: { color } }) =>
+  ${({ color: mode, selected, theme: { color } }) =>
     mode === 'primary' &&
     css`
       color: ${color.primary_invert};
@@ -64,7 +64,7 @@ export const Button = styled.button.attrs(
       }
     `}
 
-  ${({ mode, selected, theme: { color } }) =>
+  ${({ color: mode, selected, theme: { color } }) =>
     mode === 'secondary' &&
     css`
       color: ${color.secondary_invert};
@@ -97,7 +97,7 @@ export const Button = styled.button.attrs(
     `}
 
 
-    ${({ mode, selected, theme: { color } }) =>
+    ${({ color: mode, selected, theme: { color } }) =>
     mode === 'tertiary' &&
     css`
       color: ${color.secondary};
@@ -130,7 +130,7 @@ export const Button = styled.button.attrs(
       }
     `}
 
-    ${({ mode, selected, theme: { color } }) =>
+    ${({ color: mode, selected, theme: { color } }) =>
     mode === 'caution' &&
     css`
       color: ${color.error};
@@ -164,7 +164,7 @@ export const Button = styled.button.attrs(
       }
     `}
 
-    ${({ mode, selected, theme: { color } }) =>
+    ${({ color: mode, selected, theme: { color } }) =>
     mode === 'ghost' &&
     css`
       color: ${color.primary};

@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const Select = styled.select<any>`
+interface INPUT {
+  hasError?: boolean;
+}
+export const Select = styled.select<INPUT>`
   height: 40px;
   width: auto;
   overflow: visible;

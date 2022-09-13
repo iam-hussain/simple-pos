@@ -1,9 +1,9 @@
 import Color from 'color';
 
 const color = {
-  primary: '#F23D5E',
+  primary: '#CC3338',
   primary_invert: '#fff',
-  secondary: '#A7C5FF',
+  secondary: '#23A9E1',
   secondary_invert: '#fff',
   text: '#000',
   text_light: '#414242',
@@ -18,9 +18,9 @@ const color = {
 };
 
 const darkColor = {
-  primary: '#F23D5E',
+  primary: '#CC3338',
   primary_invert: '#E5E5E8',
-  secondary: '#A7C5FF',
+  secondary: '#23A9E1',
   secondary_invert: '#fff',
   text: '#fff',
   text_light: '#BABABA',

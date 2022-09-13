@@ -1,12 +1,12 @@
 import * as yup from 'yup';
-import { Country } from 'country-state-city';
+import { Country, State, City } from 'country-state-city';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { Button } from '../atoms/button';
 import { Input } from '../atoms/input';
 import { Select } from '../atoms/select';
 import { Form, FormGroup, InputContainer, InputRowGroup } from '../atoms/form';
-import { H5 } from '../atoms/typography';
+import { H6 } from '../atoms/typography';
 
 interface Props {
   // onSuccess: (data: any, values: any) => void;
@@ -17,6 +17,9 @@ export type SETUP_FORM = {
   storeName: string;
   address: string;
   city: string;
+  state: string;
+  country: string;
+  zip: string;
   email: string;
   phoneNumber: string;
   landlineNumber: string;
@@ -30,6 +33,9 @@ const initialValues: SETUP_FORM = {
   storeName: '',
   address: '',
   city: '',
+  state: '',
+  country: '',
+  zip: '',
   email: '',
   phoneNumber: '',
   landlineNumber: '',
@@ -46,7 +52,10 @@ export const SetupForm = ({ options }: Props) => {
     validationSchema: yup.object({
       storeName: yup.string().required('This felid required'),
       address: yup.string().required('This felid required'),
-      city: yup.string().required('This felid required'),
+      city: yup.string(),
+      state: yup.string(),
+      country: yup.string().required('This felid required'),
+      zip: yup.string().required('This felid required'),
       phoneNumber: yup.string().required('This felid required'),
       landlineNumber: yup.string().required('This felid required'),
       currencySymbol: yup.string().required('This felid required'),
@@ -72,7 +81,7 @@ export const SetupForm = ({ options }: Props) => {
     resetForm,
   } = formik;
 
-  async function handleOnSubmit(values: SETUP_FORM, { setSubmitting }: any) {
+  async function handleOnSubmit(inputs: SETUP_FORM, { setSubmitting }: any) {
     try {
       // const result = await mutateFunction({
       //   variables: values,
@@ -95,10 +104,13 @@ export const SetupForm = ({ options }: Props) => {
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
+        <H6 borderBottom color="secondary">
+          Store Details
+        </H6>
         <InputRowGroup>
           <InputContainer
             id="storeName"
-            label="Store Name"
+            label="Name"
             errorMessage={errors.storeName}
             touched={touched.storeName}
             flex={3}
@@ -133,59 +145,24 @@ export const SetupForm = ({ options }: Props) => {
           </InputContainer>
         </InputRowGroup>
 
-        <InputRowGroup>
-          <InputContainer
+        <InputContainer
+          id="address"
+          label="Address"
+          errorMessage={errors.address}
+          touched={touched.address}
+        >
+          <Input
             id="address"
-            label="Address"
-            errorMessage={errors.address}
-            touched={touched.address}
-            flex={2}
-          >
-            <Input
-              id="address"
-              type="text"
-              name="address"
-              placeholder="Enter store address"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.address}
-            />
-          </InputContainer>
-          <InputContainer
-            id="city"
-            label="City"
-            errorMessage={errors.city}
-            touched={touched.city}
-          >
-            <Input
-              id="city"
-              type="text"
-              name="city"
-              placeholder="Enter store city"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.city}
-            />
-          </InputContainer>
-        </InputRowGroup>
+            type="text"
+            name="address"
+            placeholder="Enter store address"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.address}
+          />
+        </InputContainer>
 
         <InputRowGroup>
-          <InputContainer
-            id="state"
-            label="State"
-            errorMessage={errors.state}
-            touched={touched.state}
-          >
-            <Input
-              id="state"
-              type="text"
-              name="state"
-              placeholder="Enter store state"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.state}
-            />
-          </InputContainer>
           <InputContainer
             id="country"
             label="Country"
@@ -194,13 +171,13 @@ export const SetupForm = ({ options }: Props) => {
           >
             <Select
               id="country"
-              type="text"
               name="country"
               placeholder="Enter store country"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.country}
             >
+              <option value="">Select country</option>
               {Country.getAllCountries().map((each) => (
                 <option
                   key={each.isoCode}
@@ -210,6 +187,67 @@ export const SetupForm = ({ options }: Props) => {
                   {each.name}
                 </option>
               ))}
+            </Select>
+          </InputContainer>
+          <InputContainer
+            id="state"
+            label="State"
+            errorMessage={errors.state}
+            touched={touched.state}
+          >
+            <Select
+              id="state"
+              name="state"
+              placeholder="Enter store state"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.state}
+            >
+              <option value="">Select state</option>
+              {values.country ? (
+                State.getStatesOfCountry(values.country).map((each) => (
+                  <option
+                    key={each.isoCode}
+                    value={each.isoCode}
+                    label={each.name}
+                  >
+                    {each.name}
+                  </option>
+                ))
+              ) : (
+                <></>
+              )}
+            </Select>
+          </InputContainer>
+        </InputRowGroup>
+
+        <InputRowGroup>
+          <InputContainer
+            id="city"
+            label="City"
+            errorMessage={errors.city}
+            touched={touched.city}
+          >
+            <Select
+              id="city"
+              name="city"
+              placeholder="Enter store city"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.city}
+            >
+              <option value="">Select city</option>
+              {values.state ? (
+                City.getCitiesOfState(values.country, values.state).map(
+                  (each) => (
+                    <option key={each.name} value={each.name} label={each.name}>
+                      {each.name}
+                    </option>
+                  )
+                )
+              ) : (
+                <></>
+              )}
             </Select>
           </InputContainer>
           <InputContainer
@@ -265,7 +303,11 @@ export const SetupForm = ({ options }: Props) => {
             />
           </InputContainer>
         </InputRowGroup>
-        <InputContainer id="username" label="Root user" disabled>
+
+        <H6 borderBottom color="secondary">
+          Admin Details
+        </H6>
+        <InputContainer id="username" label="Username" disabled>
           <Input
             id="username"
             type="text"
@@ -312,12 +354,14 @@ export const SetupForm = ({ options }: Props) => {
           </InputContainer>
         </InputRowGroup>
       </FormGroup>
-      <Button mode="secondary" type="submit" disabled={isSubmitting}>
-        Initialize store
-      </Button>
-      <Button type="submit" disabled={isSubmitting}>
-        Initialize store
-      </Button>
+      <InputRowGroup align="center">
+        <Button type="submit" disabled={isSubmitting}>
+          Initialize store
+        </Button>
+        <Button color="secondary" type="submit" disabled={isSubmitting}>
+          Initialize store
+        </Button>
+      </InputRowGroup>
     </Form>
   );
 };

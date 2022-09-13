@@ -10,6 +10,7 @@ module.exports = {
     'react/require-default-props': 'off',
     '@typescript-eslint/naming-convention': 'off',
     'import/prefer-default-export': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

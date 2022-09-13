@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     overflow-y: auto;
     display: block;
   }
-  #__next  {
+  #root  {
       position: relative;
       height: 100%;
       width: 100%;

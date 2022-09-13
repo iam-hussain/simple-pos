@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { H6, Text } from '../components/atoms/typography';
+import { H4, Text } from '../components/atoms/typography';
 import { FullScreen, Island } from '../components/atoms/screen';
 import { SetupForm } from '../components/forms/setup';
 import { Brand } from '../components/atoms/brand';
@@ -11,7 +11,7 @@ const Home: React.FC = () => {
     <FullScreen>
       <Island>
         <Brand size="regular" align="start" />
-        <H6 onClick={() => toggleTheme()}>Application Setup</H6>
+        <H4 onClick={() => toggleTheme()}>Application Setup</H4>
         <Text color="light">
           Place for employees to login and get access to the app
         </Text>

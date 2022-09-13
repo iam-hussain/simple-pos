@@ -4,7 +4,8 @@ interface TEXT {
   italic?: boolean;
   uppercase?: boolean;
   noTopMargin?: boolean;
-  color?: 'primary' | 'normal' | 'light' | 'error' | 'disabled';
+  borderBottom?: boolean;
+  color?: 'primary' | 'secondary' | 'normal' | 'light' | 'error' | 'disabled';
   weight?: 'lighter' | 'light' | 'normal' | 'bold' | 'bolder';
   align?: 'center' | 'left' | 'right';
 }
@@ -13,6 +14,7 @@ const AttributeHandle = (props: TEXT): TEXT => ({
   italic: props.italic || false,
   uppercase: props.uppercase || false,
   noTopMargin: props.noTopMargin || false,
+  borderBottom: props.borderBottom || false,
   color: props.color || 'normal',
   align: props.align || 'left',
 });
@@ -37,6 +39,13 @@ const Common = css<TEXT>`
     `}
 
   ${({ color: input, theme: { color } }) =>
+    input === 'secondary' &&
+    css`
+      color: ${color.secondary};
+    `}
+
+
+  ${({ color: input, theme: { color } }) =>
     input === 'normal' &&
     css`
       color: ${color.text};
@@ -59,6 +68,14 @@ const Common = css<TEXT>`
     input === 'disabled' &&
     css`
       color: ${color.text_lighter};
+    `}
+
+    ${({ borderBottom, theme: { color } }) =>
+    borderBottom &&
+    css`
+      border-bottom: 2px solid ${color.secondary};
+      padding-bottom: ${(props) => props.theme.space[3]};
+      margin-bottom: ${(props) => props.theme.space[5]} !important;
     `}
 `;
 

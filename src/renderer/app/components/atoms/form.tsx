@@ -56,11 +56,21 @@ export const InputWrapper = styled.div<{ flex?: number }>`
   flex: ${(props) => (props?.flex !== undefined ? props.flex : 1)};
 `;
 
-export const InputRowGroup = styled.div`
+export const InputRowGroup = styled.div<{
+  align?: 'center' | 'left' | 'right';
+}>`
   display: flex;
   flex-direction: row;
+  justify-content: ${(props) => props.align || 'space-between'};
   position: relative;
-  gap: ${(props) => props.theme.space[4]};
+  column-gap: ${(props) => props.theme.space[4]};
+  row-gap: ${(props) => props.theme.space[4]};
+  flex-wrap: wrap;
+  margin-bottom: ${(props) => props.theme.space[4]};
+
+  ${InputWrapper} {
+    margin-bottom: 0;
+  }
 `;
 
 export const ErrorBlock = styled.span`
