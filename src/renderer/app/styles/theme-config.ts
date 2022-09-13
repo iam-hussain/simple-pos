@@ -1,31 +1,37 @@
 import Color from 'color';
 
 const color = {
-  primary: '#2f77ca',
-  secondary: '#8C8C8C',
-  text: '#343a40',
-  text_light: '#838689',
+  primary: '#F23D5E',
+  primary_invert: '#fff',
+  secondary: '#A7C5FF',
+  secondary_invert: '#fff',
+  text: '#000',
+  text_light: '#414242',
+  text_lighter: '#8C8C8C',
   background: '#fff',
-  paper: '#f3f4f7',
+  paper: '#E5E5E8',
   error: '#F24B6A',
   warn: '#F2BC1B',
   success: '#8DA632',
-  info: '#3498DB',
+  info: '#1C1E9C',
   shadows: '#BFBFBF',
 };
 
 const darkColor = {
-  primary: '#32639f',
-  secondary: '#8C8C8C',
-  text: '#343a40',
-  text_light: '#838689',
-  background: '#fff',
-  paper: '#000',
-  error: '#F24B6A',
+  primary: '#F23D5E',
+  primary_invert: '#E5E5E8',
+  secondary: '#A7C5FF',
+  secondary_invert: '#fff',
+  text: '#fff',
+  text_light: '#BABABA',
+  text_lighter: '#737373',
+  background: '#2d2d44',
+  paper: '#1e1e2c',
+  error: '#F23D5E',
   warn: '#F2BC1B',
-  success: '#8DA632',
-  info: '#3498DB',
-  shadows: '#BFBFBF',
+  success: '#447622',
+  info: '#1C1E9C',
+  shadows: '#1e1e2c',
 };
 
 const space = [
@@ -78,6 +84,8 @@ const shadows = [
   `0 1px 4px 0 ${color.shadows}`,
 ];
 
+const darkShadows = ['none', 'none'];
+
 const fontFamily = ["'Poppins', sans-serif, Arial, Helvetica, sans-serif;"];
 
 export const themeLight = {
@@ -92,25 +100,23 @@ export const themeLight = {
   border_radius: '3px',
   color: {
     ...color,
-    invert: '#fff',
     primary_lighter: Color(color.primary).lighten(0.2).hex(),
     primary_light: Color(color.primary).lighten(0.05).hex(),
     primary_dark: Color(color.primary).darken(0.2).hex(),
     primary_darker: Color(color.primary).darken(0.4).hex(),
-    secondary_lighter: Color(color.secondary).lighten(0.5).hex(),
-    secondary_light: Color(color.secondary).lighten(0.2).hex(),
+    secondary_lighter: Color(color.secondary).lighten(0.2).hex(),
+    secondary_light: Color(color.secondary).lighten(0.1).hex(),
     secondary_dark: Color(color.secondary).darken(0.1).hex(),
     secondary_darker: Color(color.secondary).darken(0.2).hex(),
     error_dark: Color(color.error).darken(0.2).hex(),
     error_light: Color(color.error).lighten(0.2).hex(),
     error_lighter: Color(color.error).lighten(0.4).hex(),
-    text_lighter: Color(color.text_light).lighten(0.4).hex(),
   },
 };
 
 export const themeDark = {
   space,
-  shadows,
+  shadows: darkShadows,
   font_family: fontFamily,
   font_sizes: fontSizes,
   font_weight: fontWeight,
@@ -132,7 +138,6 @@ export const themeDark = {
     error_dark: Color(darkColor.error).darken(0.2).hex(),
     error_light: Color(darkColor.error).lighten(0.2).hex(),
     error_lighter: Color(darkColor.error).lighten(0.4).hex(),
-    text_lighter: Color(darkColor.text_light).lighten(0.4).hex(),
   },
 };
 

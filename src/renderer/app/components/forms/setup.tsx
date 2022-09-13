@@ -110,6 +110,7 @@ export const SetupForm = ({ options }: Props) => {
               name="storeName"
               onChange={handleChange}
               onBlur={handleBlur}
+              placeholder="Enter store name"
               value={values.storeName}
             />
           </InputContainer>
@@ -125,6 +126,7 @@ export const SetupForm = ({ options }: Props) => {
               id="currencySymbol"
               type="text"
               name="currencySymbol"
+              placeholder="eg: $,₹..."
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.currencySymbol}
@@ -142,6 +144,7 @@ export const SetupForm = ({ options }: Props) => {
               id="addressLine1"
               type="text"
               name="addressLine1"
+              placeholder="Enter store address"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.addressLine1}
@@ -158,6 +161,7 @@ export const SetupForm = ({ options }: Props) => {
               id="addressLine2"
               type="text"
               name="addressLine2"
+              placeholder="Enter store city and zip"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.addressLine2}
@@ -176,6 +180,7 @@ export const SetupForm = ({ options }: Props) => {
               id="phoneNumber"
               type="text"
               name="phoneNumber"
+              placeholder="Enter store mobile number"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.phoneNumber}
@@ -192,16 +197,18 @@ export const SetupForm = ({ options }: Props) => {
               id="landlineNumber"
               type="text"
               name="landlineNumber"
+              placeholder="Enter store landline number"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.landlineNumber}
             />
           </InputContainer>
         </InputRowGroup>
-        <InputContainer id="username" label="Root user">
+        <InputContainer id="username" label="Root user" disabled>
           <Input
             id="username"
             type="text"
+            placeholder="Enter root username"
             name="username"
             value="admin"
             disabled
@@ -219,6 +226,7 @@ export const SetupForm = ({ options }: Props) => {
               id="password"
               type="text"
               name="password"
+              placeholder="Enter strong 8 digit password"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
@@ -235,6 +243,7 @@ export const SetupForm = ({ options }: Props) => {
               id="passcode"
               type="text"
               name="passcode"
+              placeholder="Enter 4 digit pin"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.passcode}
@@ -242,7 +251,10 @@ export const SetupForm = ({ options }: Props) => {
           </InputContainer>
         </InputRowGroup>
       </FormGroup>
-      <Button mode="primary" type="submit" disabled={isSubmitting}>
+      <Button mode="secondary" type="submit" disabled={isSubmitting}>
+        Initialize store
+      </Button>
+      <Button type="submit" disabled={isSubmitting}>
         Initialize store
       </Button>
     </Form>

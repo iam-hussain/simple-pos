@@ -35,13 +35,14 @@ export const Button = styled.button.attrs(
   ${({ mode, selected, theme: { color } }) =>
     mode === 'primary' &&
     css`
-      color: ${color.invert};
+      color: ${color.primary_invert};
       background-color: ${selected ? color.primary_dark : color.primary};
       border: 2px solid ${color.primary};
+      outline: 1px solid ${color.primary};
 
       &:hover {
-        background-color: ${color.primary_light};
-        border: 2px solid ${color.primary_light};
+        background-color: ${color.primary_dark};
+        border: 2px solid ${color.primary_dark};
       }
 
       &:active {
@@ -66,41 +67,43 @@ export const Button = styled.button.attrs(
   ${({ mode, selected, theme: { color } }) =>
     mode === 'secondary' &&
     css`
-      color: ${color.primary};
-      background-color: ${color.invert};
-      border: 2px solid ${selected ? color.primary : color.secondary_light};
+      color: ${color.secondary_invert};
+      background-color: ${selected ? color.secondary_dark : color.secondary};
+      border: 2px solid ${color.secondary};
+      outline: 1px solid ${color.secondary};
 
       &:hover {
-        color: ${color.primary_light};
-        border: 2px solid ${color.primary_light};
+        background-color: ${color.secondary_dark};
+        border: 2px solid ${color.secondary_dark};
       }
 
       &:active {
-        color: ${color.primary_darker};
-        border: 2px solid ${color.primary_darker};
+        background-color: ${color.secondary_darker};
+        border: 2px solid ${color.secondary_darker};
       }
 
       &:focus {
-        border: 2px solid ${color.primary_dark};
+        border: 2px solid ${color.secondary_darker};
       }
 
       &:focus-visible {
-        outline: 0px solid ${color.primary_darker};
+        outline: 0px solid ${color.secondary_darker};
       }
 
       &:disabled {
-        user-select: none;
         border: 2px solid ${color.secondary_lighter};
-        color: ${color.primary_lighter};
+        background-color: ${color.secondary_lighter};
       }
     `}
+
 
     ${({ mode, selected, theme: { color } }) =>
     mode === 'tertiary' &&
     css`
       color: ${color.secondary};
-      background-color: ${color.invert};
+      background-color: ${color.primary_invert};
       border: 2px solid ${selected ? color.secondary : color.secondary_light};
+      outline: 1px solid ${selected ? color.secondary : color.secondary_light};
 
       &:hover {
         color: ${color.secondary_dark};
@@ -131,8 +134,9 @@ export const Button = styled.button.attrs(
     mode === 'caution' &&
     css`
       color: ${color.error};
-      background-color: ${color.invert};
+      background-color: ${color.primary_invert};
       border: 2px solid ${selected ? color.secondary : color.background};
+      outline: 1px solid ${selected ? color.secondary : color.background};
       box-shadow: none;
 
       &:hover {
@@ -166,6 +170,7 @@ export const Button = styled.button.attrs(
       color: ${color.primary};
       background-color: ${color.background};
       border: 2px solid ${selected ? color.primary : color.background};
+      outline: 1px solid ${selected ? color.primary : color.background};
       box-shadow: none;
 
       &:hover {

@@ -33,7 +33,7 @@ export const Label = styled.label.attrs(AttributeHandle)`
   line-height: ${(props) => props.theme.line_heights[0]};
   margin: 0;
   margin-bottom: ${(props) => props.theme.space[1]};
-  color: ${(props) => props.theme.color.secondary};
+  color: ${(props) => props.theme.color.text_light};
 
   ${({ color: input, theme: { color } }) =>
     input === 'error' &&
@@ -44,7 +44,7 @@ export const Label = styled.label.attrs(AttributeHandle)`
   ${({ color: input, theme: { color } }) =>
     input === 'disabled' &&
     css`
-      color: ${color.secondary_lighter};
+      color: ${color.text_lighter};
     `}
 `;
 

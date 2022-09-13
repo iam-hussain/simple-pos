@@ -1,4 +1,4 @@
-import { useContext, createContext, cloneElement } from 'react';
+import { createContext, cloneElement } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { themeLight } from './styles/theme-config';
 import { GlobalStyle } from './styles/global-styles';

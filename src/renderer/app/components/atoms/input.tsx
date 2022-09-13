@@ -12,14 +12,12 @@ export const Input = styled.input<INPUT>`
   border-radius: ${(props) => props.theme.border_radius};
   font-size: ${(props) => props.theme.font_sizes.text};
   font-weight: ${(props) => props.theme.font_weight.normal};
-  background-color: ${(props) => props.theme.tertiary};
-  box-shadow: ${(props) => props.theme.shadows[0]};
+  background-color: ${(props) => props.theme.color.background};
+  /* box-shadow: ${(props) => props.theme.shadows[0]}; */
   transition: ${(props) => props.theme.transition[0]};
   border: 1px solid;
   border-color: ${(props) =>
-    props.hasError
-      ? props.theme.color.error
-      : props.theme.color.secondary_lighter};
+    props.hasError ? props.theme.color.error : props.theme.color.background};
   color: ${(props) =>
     props.hasError ? props.theme.color.error : props.theme.color.text};
 
@@ -32,17 +30,15 @@ export const Input = styled.input<INPUT>`
   }
 
   &::placeholder {
-    color: ${(props) =>
-      props.hasError
-        ? props.theme.color.error
-        : props.theme.color.secondary_light};
+    color: ${(props) => props.theme.color.text_lighter};
     font-size: ${(props) => props.theme.font_sizes.text};
     font-weight: ${(props) => props.theme.font_weight.normal};
     font-style: italic;
   }
 
   &:disabled {
-    color: ${(props) => props.theme.color.secondary_lighter};
-    background-color: ${(props) => props.theme.color.secondary_lighter};
+    color: ${(props) => props.theme.color.text_lighter};
+    background-color: ${(props) => props.theme.color.background};
+    user-select: none;
   }
 `;

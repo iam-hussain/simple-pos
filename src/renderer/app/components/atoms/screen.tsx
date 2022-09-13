@@ -13,7 +13,7 @@ export const FullScreen = styled.div`
   margin: 0;
   padding: 0;
   overflow-y: auto;
-  background-color: ${(props) => props.theme.color.invert};
+  background-color: ${(props) => props.theme.color.background};
   color: ${(props) => props.theme.color.text};
   font-size: ${(props) => props.theme.font_sizes.text};
   line-height: ${(props) => props.theme.line_heights[0]};
