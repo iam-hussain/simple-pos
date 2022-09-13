@@ -58,6 +58,7 @@ export const InputWrapper = styled.div<{ flex?: number }>`
 
 export const InputRowGroup = styled.div<{
   align?: 'center' | 'left' | 'right';
+  noBottomMargin?: boolean;
 }>`
   display: flex;
   flex-direction: row;
@@ -66,7 +67,8 @@ export const InputRowGroup = styled.div<{
   column-gap: ${(props) => props.theme.space[4]};
   row-gap: ${(props) => props.theme.space[4]};
   flex-wrap: wrap;
-  margin-bottom: ${(props) => props.theme.space[4]};
+  margin-bottom: ${(props) =>
+    props.noBottomMargin ? 0 : props.theme.space[4]};
 
   ${InputWrapper} {
     margin-bottom: 0;

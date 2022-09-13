@@ -354,12 +354,9 @@ export const SetupForm = ({ options }: Props) => {
           </InputContainer>
         </InputRowGroup>
       </FormGroup>
-      <InputRowGroup align="center">
+      <InputRowGroup noBottomMargin align="center">
         <Button type="submit" disabled={isSubmitting}>
-          Initialize store
-        </Button>
-        <Button color="secondary" type="submit" disabled={isSubmitting}>
-          Initialize store
+          Submit
         </Button>
       </InputRowGroup>
     </Form>
