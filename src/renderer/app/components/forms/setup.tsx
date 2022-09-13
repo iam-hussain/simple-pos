@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as yup from 'yup';
+import { Country } from 'country-state-city';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { Button } from '../atoms/button';
 import { Input } from '../atoms/input';
+import { Select } from '../atoms/select';
 import { Form, FormGroup, InputContainer, InputRowGroup } from '../atoms/form';
 import { H5 } from '../atoms/typography';
 
@@ -16,8 +15,8 @@ interface Props {
 
 export type SETUP_FORM = {
   storeName: string;
-  addressLine1: string;
-  addressLine2: string;
+  address: string;
+  city: string;
   email: string;
   phoneNumber: string;
   landlineNumber: string;
@@ -29,8 +28,8 @@ export type SETUP_FORM = {
 
 const initialValues: SETUP_FORM = {
   storeName: '',
-  addressLine1: '',
-  addressLine2: '',
+  address: '',
+  city: '',
   email: '',
   phoneNumber: '',
   landlineNumber: '',
@@ -46,8 +45,8 @@ export const SetupForm = ({ options }: Props) => {
     onSubmit: handleOnSubmit,
     validationSchema: yup.object({
       storeName: yup.string().required('This felid required'),
-      addressLine1: yup.string().required('This felid required'),
-      addressLine2: yup.string().required('This felid required'),
+      address: yup.string().required('This felid required'),
+      city: yup.string().required('This felid required'),
       phoneNumber: yup.string().required('This felid required'),
       landlineNumber: yup.string().required('This felid required'),
       currencySymbol: yup.string().required('This felid required'),
@@ -133,38 +132,100 @@ export const SetupForm = ({ options }: Props) => {
             />
           </InputContainer>
         </InputRowGroup>
+
         <InputRowGroup>
           <InputContainer
-            id="addressLine1"
-            label="Address Line 1"
-            errorMessage={errors.addressLine1}
-            touched={touched.addressLine1}
+            id="address"
+            label="Address"
+            errorMessage={errors.address}
+            touched={touched.address}
+            flex={2}
           >
             <Input
-              id="addressLine1"
+              id="address"
               type="text"
-              name="addressLine1"
+              name="address"
               placeholder="Enter store address"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.addressLine1}
+              value={values.address}
             />
           </InputContainer>
-
           <InputContainer
-            id="addressLine2"
-            label="Address Line 2"
-            errorMessage={errors.addressLine2}
-            touched={touched.addressLine2}
+            id="city"
+            label="City"
+            errorMessage={errors.city}
+            touched={touched.city}
           >
             <Input
-              id="addressLine2"
+              id="city"
               type="text"
-              name="addressLine2"
-              placeholder="Enter store city and zip"
+              name="city"
+              placeholder="Enter store city"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.addressLine2}
+              value={values.city}
+            />
+          </InputContainer>
+        </InputRowGroup>
+
+        <InputRowGroup>
+          <InputContainer
+            id="state"
+            label="State"
+            errorMessage={errors.state}
+            touched={touched.state}
+          >
+            <Input
+              id="state"
+              type="text"
+              name="state"
+              placeholder="Enter store state"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.state}
+            />
+          </InputContainer>
+          <InputContainer
+            id="country"
+            label="Country"
+            errorMessage={errors.country}
+            touched={touched.country}
+          >
+            <Select
+              id="country"
+              type="text"
+              name="country"
+              placeholder="Enter store country"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.country}
+            >
+              {Country.getAllCountries().map((each) => (
+                <option
+                  key={each.isoCode}
+                  value={each.isoCode}
+                  label={each.name}
+                >
+                  {each.name}
+                </option>
+              ))}
+            </Select>
+          </InputContainer>
+          <InputContainer
+            id="zip"
+            label="Pin/Zip code"
+            errorMessage={errors.zip}
+            touched={touched.zip}
+          >
+            <Input
+              id="zip"
+              type="text"
+              name="zip"
+              placeholder="Enter store zip/pincode"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.zip}
             />
           </InputContainer>
         </InputRowGroup>
