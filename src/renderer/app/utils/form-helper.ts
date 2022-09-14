@@ -10,13 +10,28 @@ export function getCountries() {
   );
 }
 
-export function getState(countryCode: string | null) {
+export function getStates(countryCode?: string | null) {
   if (!countryCode) {
     return [];
   }
   return (
     State.getStatesOfCountry(countryCode).map((each) => ({
       value: each.isoCode,
+      label: each.name,
+    })) || []
+  );
+}
+
+export function getCities(
+  countryCode?: string | null,
+  stateCode?: string | null
+) {
+  if (!countryCode || !stateCode) {
+    return [];
+  }
+  return (
+    City.getCitiesOfState(countryCode, stateCode).map((each) => ({
+      value: each.name,
       label: each.name,
     })) || []
   );

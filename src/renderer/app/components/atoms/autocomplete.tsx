@@ -49,7 +49,7 @@ interface Props {
   id: string;
   name: string;
   placeholder?: string;
-  selected?: OPTION;
+  value?: string;
   options: Array<OPTION>;
   onChange: (option: OPTION[], value: string) => void;
 }
@@ -58,7 +58,7 @@ export function SelectAutoComplete({
   id,
   name,
   placeholder,
-  selected,
+  value,
   options,
   onChange,
 }: Props) {
@@ -86,7 +86,7 @@ export function SelectAutoComplete({
       );
     };
   }
-  // const selectedItem = selected?.value ? selected : null;
+
   const {
     isOpen,
     getToggleButtonProps,
@@ -95,14 +95,18 @@ export function SelectAutoComplete({
     getComboboxProps,
     highlightedIndex,
     getItemProps,
+    setInputValue,
   } = useCombobox({
-    items: searchItems,
+    items: searchItems.length > 0 ? searchItems : options,
     // selectedItem,
+    initialInputValue: value || undefined,
     onInputValueChange: ({ inputValue }: any) => {
-      const selectedOption = options.filter(getOption(inputValue));
-      const filteredOption = options.filter(filterOption(inputValue));
+      const filteredOption = inputValue
+        ? options.filter(filterOption(inputValue))
+        : options;
       setSearchItems(filteredOption);
       if (onChange) {
+        const selectedOption = options.filter(getOption(inputValue));
         onChange(selectedOption, inputValue);
       }
     },
@@ -113,6 +117,13 @@ export function SelectAutoComplete({
     // setFieldValue(name, newSelectedItem || '');
     // },
   });
+
+  useEffect(() => {
+    console.log({ value });
+    if (!value) {
+      setInputValue('');
+    }
+  }, [setInputValue, value]);
 
   return (
     <>
@@ -131,21 +142,23 @@ export function SelectAutoComplete({
       </InputWrapper>
       <DropList {...getMenuProps()}>
         {isOpen &&
-          searchItems.map((item: OPTION, index: number) => (
-            <li
-              style={
-                highlightedIndex === index
-                  ? {
-                      backgroundColor: theme.color.background,
-                    }
-                  : {}
-              }
-              key={`${item.value}${index}`}
-              {...getItemProps({ item, index })}
-            >
-              {item.label}
-            </li>
-          ))}
+          (searchItems.length > 0 ? searchItems : options).map(
+            (item: OPTION, index: number) => (
+              <li
+                style={
+                  highlightedIndex === index
+                    ? {
+                        backgroundColor: theme.color.background,
+                      }
+                    : {}
+                }
+                key={`${item.value}${index}`}
+                {...getItemProps({ item, index })}
+              >
+                {item.label}
+              </li>
+            )
+          )}
       </DropList>
     </>
   );

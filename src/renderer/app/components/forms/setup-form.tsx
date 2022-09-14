@@ -1,13 +1,14 @@
 import * as yup from 'yup';
 import { Country, State, City } from 'country-state-city';
 import { useFormik } from 'formik';
+import { useMemo } from 'react';
 import { Button } from '../atoms/button';
 import { Input } from '../atoms/input';
 import { Select } from '../atoms/select';
 import { Form, FormGroup, InputContainer, InputRowGroup } from '../atoms/form';
 import { H6 } from '../atoms/typography';
 import { SelectAutoComplete } from '../atoms/autocomplete';
-import { getCountries, getState } from '../../utils/form-helper';
+import { getCountries, getStates, getCities } from '../../utils/form-helper';
 
 interface Props {
   // onSuccess: (data: any, values: any) => void;
@@ -63,8 +64,8 @@ export const SetupForm = () => {
     validationSchema: yup.object({
       storeName: yup.string().required('This felid required'),
       address: yup.string().required('This felid required'),
-      city: yup.string(),
-      state: yup.string(),
+      city: yup.string().required('This felid required'),
+      state: yup.string().required('This felid required'),
       country: yup.string().required('This felid required'),
       zip: yup.string().required('This felid required'),
       phoneNumber: yup.string().required('This felid required'),
@@ -92,6 +93,15 @@ export const SetupForm = () => {
     resetForm,
     setFieldValue,
   } = formik;
+
+  const states = useMemo(
+    () => getStates(values.countryCode),
+    [values.countryCode]
+  );
+  const cities = useMemo(
+    () => getCities(values.countryCode, values.stateCode),
+    [values.countryCode, values.stateCode]
+  );
 
   async function handleOnSubmit(inputs: SETUP_FORM, { setSubmitting }: any) {
     // try {
@@ -179,20 +189,20 @@ export const SetupForm = () => {
             id="country"
             label="Country"
             errorMessage={errors.country}
-            touched={touched.country}
+            touched
           >
             <SelectAutoComplete
               id="country"
               name="country"
               placeholder="Select country"
-              // selected={{ value: values.countryCode, label: values.country }}
+              value={values.country}
               onChange={(selected, value) => {
                 if (selected.length > 0) {
                   setFieldValue('countryCode', selected[0].value);
                   setFieldValue('country', selected[0].label);
-                } else if (value) {
+                } else {
                   setFieldValue('countryCode', '');
-                  setFieldValue('country', value);
+                  setFieldValue('country', value || '');
                 }
                 setFieldValue('stateCode', '');
                 setFieldValue('state', value);
@@ -210,17 +220,18 @@ export const SetupForm = () => {
               id="state"
               name="state"
               placeholder="Select state"
-              // selected={{ value: values.countryCode, label: values.country }}
+              value={values.stateCode}
               onChange={(selected, value) => {
                 if (selected.length > 0) {
                   setFieldValue('stateCode', selected[0].value);
                   setFieldValue('state', selected[0].label);
-                } else if (value) {
+                } else {
+                  setFieldValue('state', value || '');
                   setFieldValue('stateCode', '');
-                  setFieldValue('state', value);
                 }
+                setFieldValue('city', '');
               }}
-              options={getState(values.countryCode)}
+              options={getStates(values.countryCode)}
             />
           </InputContainer>
         </InputRowGroup>
@@ -232,27 +243,16 @@ export const SetupForm = () => {
             errorMessage={errors.city}
             touched={touched.city}
           >
-            <Select
+            <SelectAutoComplete
               id="city"
               name="city"
-              placeholder="Enter store city"
-              onChange={handleChange}
-              onBlur={handleBlur}
+              placeholder="Select city"
               value={values.city}
-            >
-              <option value="">Select city</option>
-              {values.state ? (
-                City.getCitiesOfState(values.country, values.state).map(
-                  (each) => (
-                    <option key={each.name} value={each.name} label={each.name}>
-                      {each.name}
-                    </option>
-                  )
-                )
-              ) : (
-                <></>
-              )}
-            </Select>
+              onChange={(_, value) => {
+                setFieldValue('city', value);
+              }}
+              options={cities}
+            />
           </InputContainer>
           <InputContainer
             id="zip"
