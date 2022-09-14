@@ -23,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
       display: block;
       background-color: ${(props: any) => props.theme.color.background};
       color: ${(props) => props.theme.color.text};
+      font-weight: ${(props) => props.theme.font_weight.normal};
   }
 
   h1,

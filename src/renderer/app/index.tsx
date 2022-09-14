@@ -16,8 +16,8 @@ export default function App() {
           <Routes>
             <Route path="/order" element={<OrderBoard />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/" element={<InitialSetting />} />
-            <Route path="/d" element={<Products />} />
+            <Route path="/s" element={<InitialSetting />} />
+            <Route path="/" element={<Products />} />
           </Routes>
         </Router>
       </>

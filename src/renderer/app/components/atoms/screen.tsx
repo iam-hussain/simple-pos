@@ -32,36 +32,43 @@ export const Island = styled.div`
 `;
 
 export const Card = styled.div`
-  /* flex: 1; */
   width: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: ${(props) => props.theme.space[3]};
+  gap: ${(props) => props.theme.space[4]};
   align-content: center;
   align-items: center;
   justify-content: center;
-  padding: ${(props) => props.theme.space[4]};
+  padding: ${(props) => props.theme.space[2]};
   margin: 0;
   background-color: ${(props) => props.theme.color.paper};
   border-radius: ${(props) => props.theme.border_radius};
   box-shadow: ${(props) => props.theme.shadows[0]};
 `;
 
-export const FlexBox = styled.div<{ flex?: number }>`
-  /* background-color: ${(props) => props.theme.color.background}; */
-  padding: ${(props) => props.theme.space[6]};
-  flex: ${(props) => (props?.flex !== undefined ? props.flex : 1)};
-  background-color: ${(props: any) => props.theme.color.paper};
-  color: ${(props) => props.theme.color.text};
-`;
-
-export const ContentColumn = styled.div`
+export const FlexRow = styled.div`
   flex: 1;
   height: auto;
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: ${(props) => props.theme.space[5]};
+  gap: ${(props) => props.theme.space[4]};
   margin: 0;
   padding: 0;
+`;
+
+export const FlexColumn = styled(Card)<{ flex?: number }>`
+  flex: ${(props) => (props?.flex !== undefined ? props.flex : 1)};
+  background-color: ${(props: any) => props.theme.color.background};
+  padding: ${(props) => props.theme.space[4]};
+  justify-content: flex-start;
+  flex-direction: column;
+`;
+
+export const FlexSpace = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  align-content: center;
 `;

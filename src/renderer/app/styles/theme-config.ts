@@ -6,11 +6,12 @@ const color = {
   secondary: '#23A9E1',
   secondary_invert: '#fff',
   text: '#000',
-  text_light: '#414242',
+  text_light: '#636378',
   text_lighter: '#8C8C8C',
   background: '#fff',
-  background_light: '#efefef',
+  background_light: '#F2F2F2',
   paper: '#E5E5E8',
+  paper_dark: '#CCCCCC',
   error: '#F24B6A',
   warn: '#F2BC1B',
   success: '#8DA632',
@@ -29,6 +30,7 @@ const darkColor = {
   background: '#2d2d44',
   background_light: '#3f3f5e',
   paper: '#1e1e2c',
+  paper_dark: '#444452',
   error: '#F23D5E',
   warn: '#F2BC1B',
   success: '#447622',
@@ -74,11 +76,13 @@ const letterSpacings = {
 const lineHeights = [1, 1.125, 1.25, 1.5];
 
 const fontWeight = {
-  lighter: 300,
-  light: 400,
-  normal: 500,
-  bold: 600,
-  bolder: 700,
+  lightest: 100,
+  lighter: 200,
+  light: 300,
+  normal: 400,
+  bold: 500,
+  bolder: 600,
+  boldest: 700,
 };
 
 const shadows = [
@@ -136,7 +140,6 @@ export const themeDark = {
     secondary_lighter: Color(darkColor.secondary).lighten(0.5).hex(),
     secondary_light: Color(darkColor.secondary).lighten(0.2).hex(),
     secondary_dark: Color(darkColor.secondary).darken(0.1).hex(),
-    secondary_darker: Color(darkColor.secondary).darken(0.2).hex(),
     error_dark: Color(darkColor.error).darken(0.2).hex(),
     error_light: Color(darkColor.error).lighten(0.2).hex(),
     error_lighter: Color(darkColor.error).lighten(0.4).hex(),

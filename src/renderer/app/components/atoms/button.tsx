@@ -30,6 +30,8 @@ export const Button = styled.button.attrs(
   width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
   max-width: ${(props) => props.theme.space[9]};
   /* text-transform: uppercase; */
+  word-break: keep-all;
+  white-space: nowrap;
   letter-spacing: ${(props) => props.theme.letter_spacings.caps};
 
   ${({ color: mode, selected, theme: { color } }) =>
@@ -167,6 +169,9 @@ export const Button = styled.button.attrs(
     ${({ color: mode, selected, theme: { color } }) =>
     mode === 'ghost' &&
     css`
+      width: auto;
+      padding: 0;
+      margin: 0;
       color: ${color.primary};
       background-color: ${color.background};
       border: 2px solid ${selected ? color.primary : color.background};

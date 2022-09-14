@@ -4,6 +4,7 @@ interface TEXT {
   italic?: boolean;
   uppercase?: boolean;
   noTopMargin?: boolean;
+  noMargin?: boolean;
   borderBottom?: boolean;
   color?: 'primary' | 'secondary' | 'normal' | 'light' | 'error' | 'disabled';
   weight?: 'lighter' | 'light' | 'normal' | 'bold' | 'bolder';
@@ -20,6 +21,8 @@ const AttributeHandle = (props: TEXT): TEXT => ({
 });
 
 const Common = css<TEXT>`
+  height: auto;
+  width: 100%;
   padding: 0;
   user-select: none;
   font-family: ${(props) => props.theme.font_family[0]};
@@ -69,13 +72,22 @@ const Common = css<TEXT>`
     css`
       color: ${color.text_lighter};
     `}
+`;
 
-    ${({ borderBottom, theme: { color } }) =>
+const CommonOverwrite = css<TEXT>`
+  ${({ borderBottom, theme }) =>
     borderBottom &&
     css`
-      border-bottom: 2px solid ${color.secondary};
-      padding-bottom: ${(props) => props.theme.space[3]};
-      margin-bottom: ${(props) => props.theme.space[5]} !important;
+      border-bottom: 2px solid;
+      padding-bottom: ${theme.space[3]};
+      margin-bottom: ${theme.space[5]};
+      border-color: ${theme.color.paper_dark};
+    `}
+
+  ${({ noMargin }) =>
+    noMargin &&
+    css`
+      margin: 0 !important;
     `}
 `;
 
@@ -93,6 +105,7 @@ export const Text = styled.p.attrs(AttributeHandle)`
   line-height: ${(props) => props.theme.line_heights[0]};
   margin: 0;
   margin-bottom: ${(props) => props.theme.space[2]};
+  ${CommonOverwrite}
 `;
 
 export const H6 = styled.h6.attrs(AttributeHandle)`
@@ -102,6 +115,7 @@ export const H6 = styled.h6.attrs(AttributeHandle)`
   margin: ${(props) => props.theme.space[2]} 0;
   margin-top: ${(props) => (props.noTopMargin ? 0 : props.theme.space[4])};
   font-weight: ${(props) => props.theme.font_weight[props?.weight || 'normal']};
+  ${CommonOverwrite}
 `;
 
 export const H5 = styled.h5.attrs(AttributeHandle)`
@@ -111,6 +125,7 @@ export const H5 = styled.h5.attrs(AttributeHandle)`
   margin: ${(props) => props.theme.space[2]} 0;
   margin-top: ${(props) => (props.noTopMargin ? 0 : props.theme.space[4])};
   font-weight: ${(props) => props.theme.font_weight[props?.weight || 'normal']};
+  ${CommonOverwrite}
 `;
 
 export const H4 = styled.h4.attrs(AttributeHandle)`
@@ -120,6 +135,7 @@ export const H4 = styled.h4.attrs(AttributeHandle)`
   margin: ${(props) => props.theme.space[2]} 0;
   margin-top: ${(props) => (props.noTopMargin ? 0 : props.theme.space[4])};
   font-weight: ${(props) => props.theme.font_weight[props?.weight || 'normal']};
+  ${CommonOverwrite}
 `;
 
 export const H3 = styled.h3.attrs(AttributeHandle)`
@@ -129,6 +145,7 @@ export const H3 = styled.h3.attrs(AttributeHandle)`
   margin: ${(props) => props.theme.space[2]} 0;
   margin-top: ${(props) => (props.noTopMargin ? 0 : props.theme.space[4])};
   font-weight: ${(props) => props.theme.font_weight[props?.weight || 'normal']};
+  ${CommonOverwrite}
 `;
 
 export const H2 = styled.h2.attrs(AttributeHandle)`
@@ -138,6 +155,7 @@ export const H2 = styled.h2.attrs(AttributeHandle)`
   margin: ${(props) => props.theme.space[2]} 0;
   margin-top: ${(props) => (props.noTopMargin ? 0 : props.theme.space[4])};
   font-weight: ${(props) => props.theme.font_weight[props?.weight || 'normal']};
+  ${CommonOverwrite}
 `;
 
 export const H1 = styled.h1.attrs(AttributeHandle)`
@@ -147,4 +165,5 @@ export const H1 = styled.h1.attrs(AttributeHandle)`
   margin: ${(props) => props.theme.space[2]} 0;
   margin-top: ${(props) => (props.noTopMargin ? 0 : props.theme.space[4])};
   font-weight: ${(props) => props.theme.font_weight[props?.weight || 'normal']};
+  ${CommonOverwrite}
 `;
