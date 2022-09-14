@@ -21,6 +21,8 @@ export const GlobalStyle = createGlobalStyle`
       height: 100%;
       width: 100%;
       display: block;
+      background-color: ${(props: any) => props.theme.color.background};
+      color: ${(props) => props.theme.color.text};
   }
 
   h1,
@@ -42,6 +44,9 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+  .autocomplete__menu {
+      background: #ff0000;
+    }
 `;
 
 export default GlobalStyle;

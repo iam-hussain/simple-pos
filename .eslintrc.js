@@ -11,6 +11,8 @@ module.exports = {
     '@typescript-eslint/naming-convention': 'off',
     'import/prefer-default-export': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
+    'react/no-array-index-key': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

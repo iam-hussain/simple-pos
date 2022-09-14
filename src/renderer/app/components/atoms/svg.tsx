@@ -5,7 +5,7 @@ import { ThemeContext } from '../../theme-provider';
 
 interface SVGtypes {
   size: 'large' | 'medium' | 'small';
-  mode?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'solid' | 'ghost';
+  color?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'solid' | 'ghost';
   justify?: 'start' | 'center' | 'end';
   selected?: boolean;
   hidden?: boolean;
@@ -14,7 +14,7 @@ interface SVGtypes {
 export const SVG = styled.div.attrs(
   (props: SVGtypes): SVGtypes => ({
     size: props.size || 'regular',
-    mode: props.mode || 'secondary',
+    color: props.color || 'secondary',
     justify: props.justify || 'center',
     selected: props.selected || false,
     hidden: props.hidden || false,
@@ -38,23 +38,23 @@ export const SVG = styled.div.attrs(
 
     path,
     rect {
-      ${({ mode, selected, theme: { color } }) =>
+      ${({ color: mode, selected, theme: { color } }) =>
         mode === 'primary' &&
         css`
           fill: ${selected ? color.primary_dark : color.primary};
         `}
-      ${({ mode, selected, theme: { color } }) =>
+      ${({ color: mode, selected, theme: { color } }) =>
         mode === 'secondary' &&
         css`
           fill: ${selected ? color.secondary_dark : color.secondary};
         `}
-        ${({ mode, selected, theme: { color } }) =>
+        ${({ color: mode, selected, theme: { color } }) =>
         mode === 'ghost' &&
         css`
-          fill: ${selected ? color.paper : color.background};
+          fill: ${selected ? color.secondary_dark : color.secondary_lighter};
         `}
 
-        ${({ mode, selected, theme: { color } }) =>
+        ${({ color: mode, selected, theme: { color } }) =>
         mode === 'caution' &&
         css`
           fill: ${selected ? color.error : color.error_light};
@@ -62,7 +62,7 @@ export const SVG = styled.div.attrs(
     }
   }
   &:hover {
-    ${({ mode, theme: { color } }) =>
+    ${({ color: mode, theme: { color } }) =>
       mode === 'primary' &&
       css`
         svg {
@@ -72,7 +72,7 @@ export const SVG = styled.div.attrs(
           }
         }
       `}
-    ${({ mode, theme: { color } }) =>
+    ${({ color: mode, theme: { color } }) =>
       mode === 'secondary' &&
       css`
         svg {
@@ -82,18 +82,18 @@ export const SVG = styled.div.attrs(
           }
         }
       `}
-        ${({ mode, theme: { color } }) =>
+        ${({ color: mode, theme: { color } }) =>
       mode === 'ghost' &&
       css`
         svg {
           path,
           rect {
-            fill: ${color.paper};
+            fill: ${color.secondary};
           }
         }
       `}
 
-  ${({ mode, theme: { color } }) =>
+  ${({ color: mode, theme: { color } }) =>
       mode === 'caution' &&
       css`
       svg {
@@ -104,6 +104,24 @@ export const SVG = styled.div.attrs(
     `}
   }
 `;
+
+export function DarkModeSvg() {
+  const { theme } = useContext(ThemeContext);
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8V16Z"
+        fill={theme.color.primary}
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 4V8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16V20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z"
+        fill={theme.color.primary}
+      />
+    </svg>
+  );
+}
 
 export function EmployeeSvg() {
   return (

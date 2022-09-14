@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 interface INPUT {
   hasError?: boolean;
+  noRightBorder?: boolean;
 }
 
 export const Input = styled.input<INPUT>`
   height: 40px;
   width: auto;
+  flex-grow: 1;
   overflow: visible;
   padding: 0 ${(props) => props.theme.space[3]};
   border-radius: ${(props) => props.theme.border_radius};
@@ -16,6 +18,10 @@ export const Input = styled.input<INPUT>`
   /* box-shadow: ${(props) => props.theme.shadows[0]}; */
   transition: ${(props) => props.theme.transition[0]};
   border: 1px solid;
+  border-top-right-radius: ${({ noRightBorder, theme }) =>
+    noRightBorder ? 0 : theme.border_radius};
+  border-bottom-right-radius: ${({ noRightBorder, theme }) =>
+    noRightBorder ? 0 : theme.border_radius};
   border-color: ${(props) =>
     props.hasError ? props.theme.color.error : props.theme.color.background};
   color: ${(props) =>

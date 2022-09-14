@@ -48,7 +48,7 @@ export const Label = styled.label.attrs(AttributeHandle)`
     `}
 `;
 
-export const InputWrapper = styled.div<{ flex?: number }>`
+export const InputWrapper = styled.div<{ flex?: number; hasError?: boolean }>`
   display: flex;
   flex-direction: column;
   position: relative;

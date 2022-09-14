@@ -1,19 +1,26 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import ThemeSwitch from './components/organisms/theme-switch';
 
 import Home from './pages/home';
 import InitialSetting from './pages/initial-setting';
+import OrderBoard from './pages/order-board';
+import Products from './pages/products';
 import CustomThemeProvider from './theme-provider';
-import useTheme from './utils/useTheme';
 
 export default function App() {
   return (
     <CustomThemeProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<InitialSetting />} />
-        </Routes>
-      </Router>
+      <>
+        <ThemeSwitch />
+        <Router>
+          <Routes>
+            <Route path="/order" element={<OrderBoard />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<InitialSetting />} />
+            <Route path="/d" element={<Products />} />
+          </Routes>
+        </Router>
+      </>
     </CustomThemeProvider>
   );
 }

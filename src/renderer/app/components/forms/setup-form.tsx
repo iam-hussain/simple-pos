@@ -1,24 +1,33 @@
 import * as yup from 'yup';
 import { Country, State, City } from 'country-state-city';
 import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
 import { Button } from '../atoms/button';
 import { Input } from '../atoms/input';
 import { Select } from '../atoms/select';
 import { Form, FormGroup, InputContainer, InputRowGroup } from '../atoms/form';
 import { H6 } from '../atoms/typography';
+import { SelectAutoComplete } from '../atoms/autocomplete';
+import { getCountries, getState } from '../../utils/form-helper';
 
 interface Props {
   // onSuccess: (data: any, values: any) => void;
   options: Array<any>;
 }
 
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+];
+
 export type SETUP_FORM = {
   storeName: string;
   address: string;
   city: string;
   state: string;
+  stateCode: string;
   country: string;
+  countryCode: string;
   zip: string;
   email: string;
   phoneNumber: string;
@@ -34,7 +43,9 @@ const initialValues: SETUP_FORM = {
   address: '',
   city: '',
   state: '',
+  stateCode: '',
   country: '',
+  countryCode: '',
   zip: '',
   email: '',
   phoneNumber: '',
@@ -45,7 +56,7 @@ const initialValues: SETUP_FORM = {
   passcode: '',
 };
 
-export const SetupForm = ({ options }: Props) => {
+export const SetupForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit: handleOnSubmit,
@@ -79,26 +90,27 @@ export const SetupForm = ({ options }: Props) => {
     errors,
     touched,
     resetForm,
+    setFieldValue,
   } = formik;
 
   async function handleOnSubmit(inputs: SETUP_FORM, { setSubmitting }: any) {
-    try {
-      // const result = await mutateFunction({
-      //   variables: values,
-      // });
-      // if (result?.data?.employeeLogin) {
-      //   if (onSuccess) {
-      //     onSuccess(result.data.employeeLogin, values);
-      //   }
-      // }
-      toast.success('Logged in successfully');
-      setSubmitting(false);
-      resetForm();
-    } catch (error: any) {
-      console.error(error);
-      toast.error(error.message);
-      setSubmitting(false);
-    }
+    // try {
+    //   // const result = await mutateFunction({
+    //   //   variables: values,
+    //   // });
+    //   // if (result?.data?.employeeLogin) {
+    //   //   if (onSuccess) {
+    //   //     onSuccess(result.data.employeeLogin, values);
+    //   //   }
+    //   // }
+    //   toast.success('Logged in successfully');
+    //   setSubmitting(false);
+    //   resetForm();
+    // } catch (error: any) {
+    //   console.error(error);
+    //   toast.error(error.message);
+    //   setSubmitting(false);
+    // }
   }
 
   return (
@@ -169,25 +181,24 @@ export const SetupForm = ({ options }: Props) => {
             errorMessage={errors.country}
             touched={touched.country}
           >
-            <Select
+            <SelectAutoComplete
               id="country"
               name="country"
-              placeholder="Enter store country"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.country}
-            >
-              <option value="">Select country</option>
-              {Country.getAllCountries().map((each) => (
-                <option
-                  key={each.isoCode}
-                  value={each.isoCode}
-                  label={each.name}
-                >
-                  {each.name}
-                </option>
-              ))}
-            </Select>
+              placeholder="Select country"
+              // selected={{ value: values.countryCode, label: values.country }}
+              onChange={(selected, value) => {
+                if (selected.length > 0) {
+                  setFieldValue('countryCode', selected[0].value);
+                  setFieldValue('country', selected[0].label);
+                } else if (value) {
+                  setFieldValue('countryCode', '');
+                  setFieldValue('country', value);
+                }
+                setFieldValue('stateCode', '');
+                setFieldValue('state', value);
+              }}
+              options={getCountries()}
+            />
           </InputContainer>
           <InputContainer
             id="state"
@@ -195,29 +206,22 @@ export const SetupForm = ({ options }: Props) => {
             errorMessage={errors.state}
             touched={touched.state}
           >
-            <Select
+            <SelectAutoComplete
               id="state"
               name="state"
-              placeholder="Enter store state"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.state}
-            >
-              <option value="">Select state</option>
-              {values.country ? (
-                State.getStatesOfCountry(values.country).map((each) => (
-                  <option
-                    key={each.isoCode}
-                    value={each.isoCode}
-                    label={each.name}
-                  >
-                    {each.name}
-                  </option>
-                ))
-              ) : (
-                <></>
-              )}
-            </Select>
+              placeholder="Select state"
+              // selected={{ value: values.countryCode, label: values.country }}
+              onChange={(selected, value) => {
+                if (selected.length > 0) {
+                  setFieldValue('stateCode', selected[0].value);
+                  setFieldValue('state', selected[0].label);
+                } else if (value) {
+                  setFieldValue('stateCode', '');
+                  setFieldValue('state', value);
+                }
+              }}
+              options={getState(values.countryCode)}
+            />
           </InputContainer>
         </InputRowGroup>
 
